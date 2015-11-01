@@ -29,14 +29,11 @@
 
 #include "vtkObjectFactory.h"
 
-// #include <Interface/Camera.h>
-// #include <Engine/Control/RTRT.h>
 #include <math.h>
 
 //
 //  vbos
 //
-//#include <GL/glu.h>   
 #ifndef __APPLE__
 #include <GL/glu.h>
 #else
@@ -49,7 +46,6 @@ vtkStandardNewMacro(vtkOSPRayCamera);
 vtkOSPRayCamera::vtkOSPRayCamera()
 // : OSPRayCamera (0)
 {
-  //TODO: Observe my own modified event, and call OrientCamera then
   //cerr << "MC(" << this << ") CREATE" << endl;
   this->OSPRayManager = NULL;
 }
@@ -78,20 +74,9 @@ void vtkOSPRayCamera::OrientOSPRayCamera(vtkRenderer *ren)
     }
     OSPRayRenderer->ClearAccumulation();
 
-  // if (!this->OSPRayCamera)
-  //   {
-  //   this->OSPRayCamera = OSPRayRenderer->GetOSPRayCamera();
-  //   if (!this->OSPRayCamera)
-  //     {
-  //     return;
-  //     }
-  //   }
-
   if (!this->OSPRayManager)
     {
     this->OSPRayManager = OSPRayRenderer->GetOSPRayManager();
-    //cerr << "MC(" << this << ") REGISTER " << this->OSPRayManager << " "
-    //     << this->OSPRayManager->GetReferenceCount() << endl;
     this->OSPRayManager->Register(this);
     }
 
@@ -118,29 +103,10 @@ void vtkOSPRayCamera::OrientOSPRayCamera(vtkRenderer *ren)
   ospSet3f(ospCamera,"pos",eye[0], eye[1], eye[2]);
   ospSet3f(ospCamera,"up",up[0], up[1], up[2]);
   ospSet3f(ospCamera,"dir",lookat[0]-eye[0],lookat[1]-eye[1],lookat[2]-eye[2]);
-      // ospCommit(camera);
-      // embree::Vector3f camPos = embree::Vector3f(p.camera_eye.x(), p.camera_eye.y(), p.camera_eye.z());
-  // OSPRay::Vector lookat = (p.camera_eye + p.camera_dir);
-  // embree::Vector3f camLookAt = embree::Vector3f(lookat.x(), lookat.y(), lookat.z());
-  // embree::Vector3f camUp = embree::Vector3f(p.camera_up.x(), p.camera_up.y(), p.camera_up.z());
   ospCommit(ospCamera);
-  #endif
+#endif
 
-  // const OSPRay::BasicCameraData bookmark
-  //   (
-  //    OSPRay::Vector(eye[0], eye[1], eye[2]),
-  //    OSPRay::Vector(lookat[0], lookat[1], lookat[2]),
-  //    OSPRay::Vector(up[0], up[1], up[2]),
-  //    vfov * usize / vsize, vfov
-  //    );
-
-  // OSPRayRenderer->GetOSPRayEngine()->addTransaction
-    // ("update camera",
-     // OSPRay::Callback::create(this->OSPRayCamera,
-                             // &OSPRay::Camera::setBasicCameraData, bookmark)
-     // );
-
-  #endif
+#endif
 }
 
 //----------------------------------------------------------------------------

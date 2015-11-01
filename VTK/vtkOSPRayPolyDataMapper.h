@@ -37,22 +37,7 @@
 
 #include <map>
 
-class vtkSphereSource;
-class vtkGlyph3D;
-class vtkTubeFilter;
-class vtkAppendPolyData;
-
-//BTX
-namespace OSPRay {
-class Mesh;
-class Group;
-}
-//ETX
-class vtkCellArray;
 class vtkPoints;
-class vtkProperty;
-class vtkRenderWindow;
-class vtkOSPRayRenderer;
 class vtkOSPRayManager;
 
 namespace vtkosp
@@ -89,12 +74,10 @@ protected:
   vtkOSPRayPolyDataMapper();
   ~vtkOSPRayPolyDataMapper();
 
-  //BTX
   void DrawPolygons(vtkPolyData *, vtkPoints *,
-                    vtkosp::Mesh * /*, OSPRay::Group *, OSPRay::Group * */);
+                    vtkosp::Mesh *);
   void DrawTStrips(vtkPolyData *, vtkPoints *,
-                    vtkosp::Mesh* /*, OSPRay::Mesh *, OSPRay::Group *, OSPRay::Group * */);
-  //ETX
+                    vtkosp::Mesh*);
 
 private:
   vtkOSPRayPolyDataMapper(const vtkOSPRayPolyDataMapper&); // Not implemented.
@@ -110,10 +93,6 @@ private:
   std::map<int, osp::Model*> cache;
   bool CellScalarColor;
   static int timestep;
-//BTX
-  class Helper;
-  Helper *MyHelper;
-//ETX
 };
 
 #endif

@@ -32,27 +32,6 @@
 
 #include "vtkOSPRay.h"
 
-// //
-// //ospray
-// //
-// #if 1
-// #include "ospray/ospray.h"
-// #include "ospray/common/ospcommon.h"
-// #endif
-
-//BTX
-namespace OSPRay {
-class OSPRayInterface;
-class Scene;
-class Group;
-class LightSet;
-class Factory;
-class Camera;
-class SyncDisplay;
-class Light;
-}
-//ETX
-
 class vtkOSPRayManager;
 
 class VTKOSPRAY_EXPORT vtkOSPRayRenderer : public vtkOpenGLRenderer
@@ -147,39 +126,6 @@ public:
     return this->OSPRayManager;
   }
 
-  //BTX
-  //Description:
-  //Convenience read accessors to OSPRay structures
-  // OSPRay::OSPRayInterface* GetOSPRayEngine()
-  // {
-  // return this->OSPRayEngine;
-  // }
-  // OSPRay::Factory* GetOSPRayFactory()
-  // {
-  //   return this->OSPRayFactory;
-  // }
-  // OSPRay::Scene* GetOSPRayScene()
-  // {
-  //   return this->OSPRayScene;
-  // }
-  // OSPRay::Group* GetOSPRayWorldGroup()
-  // {
-  //   return this->OSPRayWorldGroup;
-  // }
-  // OSPRay::LightSet* GetOSPRayLightSet()
-  // {
-  //   return this->OSPRayLightSet;
-  // }
-  // OSPRay::Camera* GetOSPRayCamera()
-  // {
-  //   return this->OSPRayCamera;
-  // }
-  // OSPRay::SyncDisplay* GetSyncDisplay()
-  // {
-  //   return this->SyncDisplay;
-  // }
-  //ETX
-
   bool hasVolumeHack;
 	void SetProgressiveRenderFlag() {prog_flag = true; }
 
@@ -219,22 +165,11 @@ private:
   bool EngineStarted;
 
   int ImageX;
-	int ImageY;
-	OSPFrameBuffer osp_framebuffer;
+  int ImageY;
+  OSPFrameBuffer osp_framebuffer;
 
   float *ColorBuffer;
   float *DepthBuffer;
-
-  //BTX
-  // OSPRay::OSPRayInterface * OSPRayEngine;
-  // OSPRay::Factory * OSPRayFactory;
-  // OSPRay::Scene * OSPRayScene;
-  // OSPRay::Group * OSPRayWorldGroup;
-  // OSPRay::LightSet * OSPRayLightSet;
-  // OSPRay::Camera * OSPRayCamera;
-  // OSPRay::SyncDisplay * SyncDisplay;
-  // OSPRay::Light * DefaultLight;
-  //ETX
 
   int ChannelId;
 
@@ -246,12 +181,9 @@ private:
   int Samples;
   int MaxDepth;
   bool Accumulate;
-	bool prog_flag;
+  bool prog_flag;
 
   double backgroundRGB[3];
-
-
-  // OSPFrameBuffer ospFramebuffer;
 };
 
 #endif
