@@ -40,16 +40,16 @@
 //#include <X11/Xutil.h>
 //#include <X11/Xatom.h>
 //#include <GL/glx.h>
-#ifndef __APPLE__
-#include <GL/glu.h>
-#else
-#include <OpenGL/glu.h>
-#endif
-
-
-//#include <GL/glext.h>
-#include "vtkOpenGL.h"
-#include "vtkOpenGLError.h"
+//#ifndef __APPLE__
+//#include <GL/glu.h>
+//#else
+//#include <OpenGL/glu.h>
+//#endif
+//
+//
+////#include <GL/glext.h>
+//#include "vtkOpenGL.h"
+//#include "vtkOpenGLError.h"
 #include <map>
 #include <algorithm>
 
