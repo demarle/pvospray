@@ -35,6 +35,7 @@ endif()
 
 vtk_module(vtkOSPRay
   DEPENDS
+    vtkRendering${VTK_RENDERING_BACKEND}
     vtkFiltersCore
     vtkParallelCore
     vtkFiltersHybrid
